@@ -43,12 +43,12 @@ export class EditComponent implements OnInit {
     event.preventDefault();
     this.errors=[];
 
-    if(this.petDetails.name=='')
+    if(this.petDetails.name.trim()=='')
     {
       this.errorsVal=true;
       this.errors.push({'message':'Give your pet a name Yo!'});
     }
-    else if(this.petDetails.name.length<3)
+    else if((this.petDetails.name.trim()).length<3)
     {
       this.errorsVal=true;
       this.errors.push({'message':'What kind of name is that..Try a longer name !'});
@@ -81,8 +81,12 @@ export class EditComponent implements OnInit {
             let temp=this._httpservice.editAPet(this.id,this.petDetails);
 
         temp.subscribe(data=>{
-
-              if(data['message']=='error'){
+          if(data['message']=='unique error'){
+            console.log("What the fuck")
+            this.errorsVal=true;
+            this.errors.push(data['data']);
+          }
+          else if(data['message']=='error'){
                 this.errorsVal=true;
 
                 for(let key in data['data'].errors){

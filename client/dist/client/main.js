@@ -501,11 +501,11 @@ var EditComponent = /** @class */ (function () {
         var _this = this;
         event.preventDefault();
         this.errors = [];
-        if (this.petDetails.name == '') {
+        if (this.petDetails.name.trim() == '') {
             this.errorsVal = true;
             this.errors.push({ 'message': 'Give your pet a name Yo!' });
         }
-        else if (this.petDetails.name.length < 3) {
+        else if ((this.petDetails.name.trim()).length < 3) {
             this.errorsVal = true;
             this.errors.push({ 'message': 'What kind of name is that..Try a longer name !' });
         }
@@ -531,7 +531,12 @@ var EditComponent = /** @class */ (function () {
             console.log("I was here", this.petDetails);
             var temp = this._httpservice.editAPet(this.id, this.petDetails);
             temp.subscribe(function (data) {
-                if (data['message'] == 'error') {
+                if (data['message'] == 'unique error') {
+                    console.log("What the fuck");
+                    _this.errorsVal = true;
+                    _this.errors.push(data['data']);
+                }
+                else if (data['message'] == 'error') {
                     _this.errorsVal = true;
                     for (var key in data['data'].errors) {
                         _this.errors.push(data['data'].errors[key]);
@@ -571,7 +576,7 @@ var EditComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "*{\r\n    font-family: Arial, Helvetica, sans-serif;\r\n}\r\n.nav{\r\n    margin-left:20px;\r\n    background-color: #e9ebee;\r\n    border: 3px #3b5998 solid;\r\n    color:#3b5998;\r\n    border-radius:10px;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight:700;\r\n    font-size:15px;\r\n    height:50px;\r\n    width:150px;\r\n}\r\n.navS{\r\n    margin-left:20px;\r\n    background-color: #e9ebee;\r\n    border: 3px #3b5998 solid;\r\n    color:#3b5998;\r\n    border-radius:10px;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight:700;\r\n    font-size:15px;\r\n    height:30px;\r\n    width:70px;\r\n}\r\nh1{\r\n    color:#3b5998;\r\n    \r\n}\r\n.wrapper{\r\n    text-align:center;\r\n    border:5px solid #3b5998;\r\n    background-color: #e6f2ff;\r\n    width:700px;\r\n    height:100%;\r\n    margin:0 auto;\r\n    border-radius: 20px;\r\n}\r\na:link{\r\n    color: #3b5998;\r\n    text-decoration:none;\r\n    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\r\n    font-size:20px;\r\n}\r\na:hover , a:active{\r\nbackground-color: hotpink;\r\n}\r\ntable{\r\n    margin:0 auto;\r\n    border: 2px solid #3b5998;\r\n}\r\nth{\r\n    color:#3b5998;\r\n    font-weight:600;\r\n    font-size:22px;\r\n    /* color:white; */\r\n    background-color:#a2a9b3;\r\n}\r\ntr:nth-child(odd) {background: #e6f2ff}\r\ntr:nth-child(even) {background: #a2a9b3}"
+module.exports = "*{\r\n    font-family: Arial, Helvetica, sans-serif;\r\n}\r\n.nav{\r\n    margin-left:20px;\r\n    background-color: #e9ebee;\r\n    border: 3px #3b5998 solid;\r\n    color:#3b5998;\r\n    border-radius:10px;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight:700;\r\n    font-size:15px;\r\n    height:50px;\r\n    width:150px;\r\n}\r\n.navS{\r\n    margin-left:20px;\r\n    background-color: #e9ebee;\r\n    border: 3px #3b5998 solid;\r\n    color:#3b5998;\r\n    border-radius:10px;\r\n    font-family: Arial, Helvetica, sans-serif;\r\n    font-weight:700;\r\n    font-size:15px;\r\n    height:30px;\r\n    width:70px;\r\n}\r\nh1{\r\n    color:#3b5998;\r\n    \r\n}\r\n.wrapper{\r\n    text-align:center;\r\n    border:5px solid #3b5998;\r\n    background-color: #e6f2ff;\r\n    width:700px;\r\n    height:100%;\r\n    margin:0 auto;\r\n    border-radius: 20px;\r\n}\r\na:link{\r\n    color: #3b5998;\r\n    text-decoration:none;\r\n    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;\r\n    font-size:20px;\r\n}\r\na:hover , a:active{\r\nbackground-color: hotpink;\r\n}\r\ntd,tr{\r\n    padding:5px;\r\n}\r\ntable{\r\n    margin:0 auto;\r\n    border: 2px solid #3b5998;\r\n}\r\nth{\r\n    color:#3b5998;\r\n    font-weight:600;\r\n    font-size:22px;\r\n    /* color:white; */\r\n    background-color:#a2a9b3;\r\n}\r\ntr:nth-child(odd) {background: #e6f2ff}\r\ntr:nth-child(even) {background: #a2a9b3}"
 
 /***/ }),
 
