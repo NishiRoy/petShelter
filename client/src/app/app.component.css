@@ -1,0 +1,26 @@
+.nav{
+    margin-left:20px;
+    background-color: #e9ebee;
+    border: 3px #3b5998 solid;
+    color:#3b5998;
+    border-radius:10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight:700;
+    font-size:15px;
+    height:50px;
+    width:150px;
+}
+h1{
+    color:#3b5998;
+    
+}
+
+.wrapper{
+    text-align:center;
+    border:5px solid #3b5998;
+    background-color: #e6f2ff;
+    width:700px;
+    height:100%;
+    margin:0 auto;
+    border-radius: 20px;
+}

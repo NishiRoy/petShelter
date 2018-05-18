@@ -1,0 +1,40 @@
+<h2>
+  These pets are looking for a home!
+</h2>
+<a [routerLink]="['new']">Add a pet to the Shelter</a>
+<br/><br/>
+ 
+<div *ngIf='errorsVal'>
+    <p *ngFor='let err of errors'> {{err.message}}</p>
+           
+    </div>
+
+
+  <table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>  
+            Type
+        </th>
+        <th>
+            Actions
+        </th>
+    </tr>
+    <tbody  *ngFor="let pet of allPets">
+        <tr>
+            <td>
+                {{pet.name}}
+            </td> 
+            <td>
+                {{pet.type}}
+            </td>
+            <td>
+                <button class="navS" (click)='details(pet._id)'>Details</button>
+                <button class="navS" (click)='edit(pet._id)'>Edit</button>
+            </td>
+        </tr>
+    </tbody>
+  </table>
+  <br/><br/>

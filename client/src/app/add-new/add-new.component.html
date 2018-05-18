@@ -1,0 +1,25 @@
+<h2> Know of a pet needing a home??</h2>
+
+
+<div class="formIn">
+  <form #loginForm="ngForm" (submit)='onSubmit($event)'>
+      Name :<br/> <input type="text" name="petDetails.name"[(ngModel)]="petDetails.name" required/>* <br/>
+      Type : <br/><input type="text" name="petDetails.type"[(ngModel)]="petDetails.type" required/>* <br/>
+      Description : <br/><input type="text" name="petDetails.description"[(ngModel)]="petDetails.description" required/>* <br/>
+      Skills:
+      <ul>
+        <li>Skill One : <input type="text" name="petDetails.skillone"[(ngModel)]="petDetails.skillone" required/>* <br/><br/></li>
+        <li>Skill Two : <input type="text" name="petDetails.skilltwo"[(ngModel)]="petDetails.skilltwo" required/>* <br/><br/></li>
+        <li>skill Three : <input type="text" name="petDetails.skillthree"[(ngModel)]="petDetails.skillthree" required/>* <br/><br/></li>
+      </ul>
+
+      <div *ngIf='errorsVal'>
+        <p *ngFor='let err of errors'> {{err.message}}</p>
+               
+        </div>
+  
+      <button class="nav" type="submit">Add Pet</button>
+      <button class="nav" (click)='cancelAdd()'>Cancel</button>
+  </form>
+  <br/><br/>
+</div>

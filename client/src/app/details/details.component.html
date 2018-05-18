@@ -1,0 +1,28 @@
+<h2> Details about {{petDeets[0].name}}</h2>
+
+
+<table>
+  <tr>
+      <td> Type: </td>
+      <td> {{petDeets[0].type}}</td>
+  </tr>
+  <tr>
+      <td> Description: </td>
+      <td> {{petDeets[0].description}}</td>
+  </tr>
+  <tr>
+      <td> Skills: </td>
+      <td> {{petDeets[0].skillone}}<br/>
+         {{petDeets[0].skilltwo}}<br/>{{petDeets[0].skillthree}}</td>
+  </tr>
+  <tr>
+      <td> Likes: </td>
+      <td> {{petDeets[0].likes}}</td>
+  </tr>
+</table>
+<br/><br/>
+
+<button class="nav" (click)='like($event,petDeets[0]._id)'>Like</button>
+<button class="nav" (click)='adopt(petDeets[0]._id)'>Adopt</button>
+
+<br/><br/>
