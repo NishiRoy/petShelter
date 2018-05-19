@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:'',redirectTo:'pets',pathMatch:'full'},
   {path:'pets',component:HomeComponent},
   {path:'pets/new',component:AddNewComponent},
-  {path:'pets/:id',component:DetailsComponent},
+  {path:'pets/details/:id',component:DetailsComponent},
   {path:'pets/edit/:id',component:EditComponent},
   {path:'**',component:PageNotFoundComponent},
 ];

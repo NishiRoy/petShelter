@@ -81,18 +81,11 @@ export class EditComponent implements OnInit {
             let temp=this._httpservice.editAPet(this.id,this.petDetails);
 
         temp.subscribe(data=>{
-          if(data['message']=='unique error'){
-            console.log("What the fuck")
-            this.errorsVal=true;
-            this.errors.push(data['data']);
-          }
-          else if(data['message']=='error'){
+           if(data['message']=='error'){
                 this.errorsVal=true;
-
-                for(let key in data['data'].errors){
-                  this.errors.push(data['data'].errors[key]);
-                console.log("console errors",data['data'].errors[key]);
-                }
+                console.log("edit",data);
+                  this.errors.push(data['data']);
+                // console.log("console errors",data['data'].errors[key]);
               }
               else
               {

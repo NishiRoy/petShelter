@@ -19,9 +19,9 @@ this.createnew=function(req,res){
         console.log("Adding a new pet with the following details");
         console.log(req.body);
 
-        Pets.findOne({name:req.body.name},function(err,val){
-            console.log("I was here");
-            if(val==null){
+        // Pets.findOne({name:req.body.name},function(err,val){
+        //     console.log("I was here");
+        //     if(val==null){
                 var pet_new=new Pets({name:req.body.name,type:req.body.type,description:req.body.description,skillone:req.body.skillone,skilltwo:req.body.skilltwo,skillthree:req.body.skillthree});
                     pet_new.save(function(err,pet){
                         if(err)
@@ -36,13 +36,13 @@ this.createnew=function(req,res){
                         }
                     });
 
-            }
-            else{
-                console.log("Pet exists")
-                res.json({message:'unique error',data:{message:'Name Already exists in the Database'}})
+            // }
+            // else{
+            //     console.log("Pet exists")
+            //     res.json({message:'unique error',data:{message:'Name Already exists in the Database'}})
             
-            }
-        })
+            // }
+        // })
        
     
 }
@@ -83,33 +83,33 @@ this.getPet= function(req, res) {
 
 this.editPets=function(req,res){
     console.log(req.body);
-    if(req.body.name.length<3 || req.body.type.length<3 || req.body.description.length<3){
-        console.log("error");
-        res.json({message:'unique error',data:{message:'Minimum length is 3 for all values'}})
-    }
-    else{
-        Pets.findOne({name:req.body.name},function(err,val){
-            console.log("I was here");
-            if(val==null){
+    // if(req.body.name.length<3 || req.body.type.length<3 || req.body.description.length<3){
+    //     console.log("error");
+    //     res.json({message:'unique error',data:{message:'Minimum length is 3 for all values'}})
+    // }
+    // else{
+    //     Pets.findOne({name:req.body.name},function(err,val){
+    //         console.log("I was here");
+    //         if(val==null){
 
-                Pets.update({_id:req.params.id},{$set:{'name':req.body.name,'type':req.body.type,'description':req.body.description,'skillone':req.body.skillone,'skilltwo':req.body.skilltwo,'skillthree':req.body.skillthree}},function(err,pet){
+                Pets.update({_id:req.params.id},{$set:{'name':req.body.name,'type':req.body.type,'description':req.body.description,'skillone':req.body.skillone,'skilltwo':req.body.skilltwo,'skillthree':req.body.skillthree}},{ runValidators: true, context: 'query' },function(err,pet){
                         if(err){
-                            console.log("error");
-                            res.json({message:'error',error:err})
+                            console.log("error",err);
+                            res.json({message:'error',data:err})
                         }
                         else{
                             console.log("Successfully edited stuff",pet);
                             res.json({message:'success',data:pet});
                         }
                     })
-                }
-                else{
-                    console.log("Pet exists")
-                    res.json({message:'unique error',data:{message:'Name Already exists in the Database'}})
+        //         }
+        //         else{
+        //             console.log("Pet exists")
+        //             res.json({message:'unique error',data:{message:'Name Already exists in the Database'}})
                 
-                }
-            })
-        }
+        //         }
+        //     })
+        // }
             
 
      }

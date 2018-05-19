@@ -114,11 +114,7 @@ var AddNewComponent = /** @class */ (function () {
             console.log("I was here", this.petDetails);
             var temp = this._httpservice.createAPet(this.petDetails);
             temp.subscribe(function (data) {
-                if (data['message'] == 'unique error') {
-                    _this.errorsVal = true;
-                    _this.errors.push(data['data']);
-                }
-                else if (data['message'] == 'error') {
+                if (data['message'] == 'error') {
                     _this.errorsVal = true;
                     for (var key in data['data'].errors) {
                         _this.errors.push(data['data'].errors[key]);
@@ -186,7 +182,7 @@ var routes = [
     { path: '', redirectTo: 'pets', pathMatch: 'full' },
     { path: 'pets', component: _home_home_component__WEBPACK_IMPORTED_MODULE_2__["HomeComponent"] },
     { path: 'pets/new', component: _add_new_add_new_component__WEBPACK_IMPORTED_MODULE_4__["AddNewComponent"] },
-    { path: 'pets/:id', component: _details_details_component__WEBPACK_IMPORTED_MODULE_6__["DetailsComponent"] },
+    { path: 'pets/details/:id', component: _details_details_component__WEBPACK_IMPORTED_MODULE_6__["DetailsComponent"] },
     { path: 'pets/edit/:id', component: _edit_edit_component__WEBPACK_IMPORTED_MODULE_5__["EditComponent"] },
     { path: '**', component: _page_not_found_page_not_found_component__WEBPACK_IMPORTED_MODULE_3__["PageNotFoundComponent"] },
 ];
@@ -531,17 +527,11 @@ var EditComponent = /** @class */ (function () {
             console.log("I was here", this.petDetails);
             var temp = this._httpservice.editAPet(this.id, this.petDetails);
             temp.subscribe(function (data) {
-                if (data['message'] == 'unique error') {
-                    console.log("What the fuck");
+                if (data['message'] == 'error') {
                     _this.errorsVal = true;
+                    console.log("edit", data);
                     _this.errors.push(data['data']);
-                }
-                else if (data['message'] == 'error') {
-                    _this.errorsVal = true;
-                    for (var key in data['data'].errors) {
-                        _this.errors.push(data['data'].errors[key]);
-                        console.log("console errors", data['data'].errors[key]);
-                    }
+                    // console.log("console errors",data['data'].errors[key]);
                 }
                 else {
                     _this.errorsVal = false;
@@ -644,7 +634,7 @@ var HomeComponent = /** @class */ (function () {
         });
     };
     HomeComponent.prototype.details = function (id) {
-        this.router.navigate(['/pets', id]);
+        this.router.navigate(['/pets/details', id]);
     };
     HomeComponent.prototype.edit = function (id) {
         this.router.navigate(['/pets/edit', id]);

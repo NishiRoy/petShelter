@@ -42,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   details(id){
 
-    this.router.navigate(['/pets',id]);
+    this.router.navigate(['/pets/details',id]);
 
   }
 

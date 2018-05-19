@@ -66,12 +66,7 @@ export class AddNewComponent implements OnInit {
             let temp=this._httpservice.createAPet(this.petDetails);
 
         temp.subscribe(data=>{
-              if(data['message']=='unique error'){
-
-                this.errorsVal=true;
-                this.errors.push(data['data']);
-              }
-              else if(data['message']=='error'){
+              if(data['message']=='error'){
                 this.errorsVal=true;
 
                 for(let key in data['data'].errors){
